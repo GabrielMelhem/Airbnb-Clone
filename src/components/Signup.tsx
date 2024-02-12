@@ -6,7 +6,10 @@ import facebook from "../images/facebook.jpeg";
 import mail from "../images/mail.png";
 import phone from "../images/phone.png";
 
-const Signup = () => {
+interface signProps {
+  setSign?: any
+}
+const Signup = (props:signProps) => {
   const [email, setEmail] = useState(false);
   return (
     <div
@@ -21,7 +24,7 @@ const Signup = () => {
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div className="p-2 pb-8 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
             <div className="p-4 mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left flex">
-              <h1>x</h1>
+              <h1 onClick={()=>props.setSign(false)} className='cursor-pointer'>X</h1>
               <h3
                 className="ml-36 text-base font-bold leading-6 text-gray-900"
                 id="modal-title"
@@ -51,6 +54,14 @@ const Signup = () => {
                 containerStyle={{ marginTop: "15px", marginLeft: "20px" }}
               />
             )}
+            {email && (
+              <input
+                type="text"
+                className="border border-spacing-1 text-gray-900 text-lg rounded-lg border-black h-12 mt-4 block w-11/12 p-2.5 outline-none ml-5"
+                placeholder="Password"
+                required
+              />
+            )}
 
             <h1 className="text-xs ml-5 mt-3">
               We’ll call or text you to confirm your number. Standard message
@@ -58,7 +69,7 @@ const Signup = () => {
             </h1>
 
             <button className="bg-rose-600 text-white font-bold py-2 px-4 rounded mt-3 w-11/12 h-12 ml-5">
-              Continue
+              {email ? "Agree and Continue" : "Continue"}
             </button>
             <h1 className="text-center mt-3">or</h1>
             <div className="flex items-center border border-spacing-1 rounded-xl border-black w-11/12 p-3 mt-3 ml-5 cursor-pointer hover:bg-gray-200">
