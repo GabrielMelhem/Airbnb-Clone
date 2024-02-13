@@ -5,6 +5,7 @@ import menu from "../images/menu.png";
 import user from "../images/user.png";
 import Signup from "./Signup";
 import Login from "./Login";
+import earth from "../images/earth.png";
 
 const Navbar = () => {
   const [popUp, setPopUp] = useState(false);
@@ -12,7 +13,7 @@ const Navbar = () => {
   const [log, setLog] = useState(false);
   return (
     <div className="flex items-center p-3 border border-b-gray-300">
-      <img src={airbnb} className="w-24 h-18 ml-10" />
+      <img src={airbnb} className="w-24 h-16 ml-16" />
       <div className="flex items-center rounded-3xl border border-gray-300 p-2 shadow-lg h-12 ml-80 ">
         <input
           type="text"
@@ -37,9 +38,10 @@ const Navbar = () => {
           placeholder="Add Guests"
           required
         />
-        <img src={search} className="w-8 h-8" />
+        <img src={search} className="w-8 h-8 cursor-pointer" />
       </div>
-      <div onClick={()=>setPopUp(!popUp)} className=" cursor-pointer flex items-center border border-spacing-1 rounded-full p-2 ml-80">
+      <img src={earth} className="w-5 h-5 ml-72"/>
+      <div onClick={()=>setPopUp(!popUp)} className=" cursor-pointer flex items-center border border-spacing-1 rounded-full p-2 ml-3">
         {popUp && <div className="shadow-xl h-16 w-28 z-10 absolute bg-white mt-32 p-1">
           <h1 onClick={()=>setSign(!sign)} className="font-semibold text-sm">Sign Up</h1>
           <hr className="mt-2" />
