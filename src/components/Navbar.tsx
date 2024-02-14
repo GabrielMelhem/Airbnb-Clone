@@ -6,11 +6,13 @@ import user from "../images/user.png";
 import Signup from "./Signup";
 import Login from "./Login";
 import earth from "../images/earth.png";
+import Globe from "./Globe";
 
 const Navbar = () => {
   const [popUp, setPopUp] = useState(false);
   const [sign, setSign] = useState(false);
   const [log, setLog] = useState(false);
+  const [globe, setGlobe] = useState<any>(false);
   return (
     <div className="flex items-center p-3 border border-b-gray-300">
       <img src={airbnb} className="w-24 h-16 ml-16" />
@@ -38,9 +40,9 @@ const Navbar = () => {
           placeholder="Add Guests"
           required
         />
-        <img src={search} className="w-8 h-8 cursor-pointer" />
+        <img src={search} className="w-8 h-8" />
       </div>
-      <img src={earth} className="w-5 h-5 ml-72"/>
+      <img src={earth} onClick={()=>setGlobe(true)} className="w-5 h-5 ml-72 cursor-pointer"/>
       <div onClick={()=>setPopUp(!popUp)} className=" cursor-pointer flex items-center border border-spacing-1 rounded-full p-2 ml-3">
         {popUp && <div className="shadow-xl h-16 w-28 z-10 absolute bg-white mt-32 p-1">
           <h1 onClick={()=>setSign(!sign)} className="font-semibold text-sm">Sign Up</h1>
@@ -52,6 +54,8 @@ const Navbar = () => {
       </div>
       {sign && <Signup setSign={setSign} />}
       {log && <Login setLog={setLog}/>}
+      {globe && <Globe setGlobe={setGlobe}/>}
+      
     </div>
   );
 };
