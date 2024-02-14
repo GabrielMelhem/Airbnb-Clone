@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
+import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { auth, database } from "../firebase/setup";
+import moment from "moment";
 
 const Details = () => {
   const location = useLocation();
 
-  console.log(location);
+  const [review, setReview] = useState("");
+  const [reviewData, setReviewData] = useState<any>([]);
+
+  const addReview = async () => {
+    try {
+      const userDoc = doc(database, "Hotels", `${location.state.data.id}`);
+      const reviewRef = collection(userDoc, "Reviews");
+      await addDoc(reviewRef, {
+        review: review,
+        email: auth.currentUser && auth.currentUser.email,
+        date: moment(new Date()).format("DD-MM-YYYY"),
+        proImg: auth.currentUser?.photoURL,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getReviews = async () => {
+    try {
+      const userDoc = doc(database, "Hotels", `${location.state.data.id}`);
+      const reviewRef = collection(userDoc, "Reviews");
+      const data = await getDocs(reviewRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      setReviewData(filteredData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getReviews();
+  }, [reviewData]);
+
   return (
     <>
       <Navbar />
@@ -68,6 +106,44 @@ const Details = () => {
             className="mt-6 w-10 h-10 rounded-full"
           />
           <h1 className="mt-6 ml-3">{location.state.data.type}</h1>
+        </div>
+        <hr className="mt-5" />
+        <div className="flex mt-8">
+          <input
+            onChange={(e) => setReview(e.target.value)}
+            type="text"
+            className=" border-b-2 text-gray-900 text-lg  border-gray-300 h-12 block w-5/12 p-2.5 outline-none"
+            placeholder="Comments"
+            required
+          />
+          <button
+            onClick={addReview}
+            className="shadow-2xl text-white bg-gray-800 w-14 h-14 border border-gray-400 ml-7"
+          >
+            Add
+          </button>
+        </div>
+        <div className="mt-8 grid grid-cols-2">
+          {reviewData.map((data: any) => {
+            return (
+              <>
+                <div>
+                  <div className="flex items-center mt-8">
+                    <img src={data.proImg} className="rounded-full w-12 h-12" />
+                    <div className="ml-3">
+                      <h1 className=" font-semibold text-lg">
+                        {data.email.substring(0, data.email.indexOf("@"))}
+                      </h1>
+                      <h1 className=" font-normal text-gray-500 text-sm mt-2">
+                        {data.date}
+                      </h1>
+                    </div>
+                  </div>
+                  <h1 className="mt-4">{data.review}</h1>
+                </div>
+              </>
+            );
+          })}
         </div>
       </div>
     </>

@@ -1,6 +1,8 @@
 import React from "react";
 import rooms from "../images/rooms.png";
 import { Link } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { database } from "../firebase/setup";
 
 interface hotelProp {
   hotels: any;
@@ -8,12 +10,18 @@ interface hotelProp {
 }
 
 const Home = (props: hotelProp) => {
+  const addHotels =(data:any)=>{
+    const hotelDoc = doc(database, "Hotels",`${data?.id}`)
+    setDoc(hotelDoc,{
+      details:data && data
+    })
+  }
   return (
     <div className="grid grid-cols-4">
       {props.hotels.map((data: any) => {
         return (
           <>
-            <Link to="/details" state={{ data: data }}>
+            <Link onClick={()=> addHotels(data)} to="/details" state={{ data: data }}>
               <div className="max-w-sm rounded-t-xl overflow-hidden w-72 h-11/12 ml-6 mt-7">
                 <img
                   className="w-72 h-72 rounded-xl"
