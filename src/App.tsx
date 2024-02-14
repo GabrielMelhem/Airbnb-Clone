@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { Routes, Route } from "react-router-dom";
 import Details from "./components/Details";
+import Footer from "./components/Footer";
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<Main />}/>
         <Route path="/details" element={<Details />}/>
       </Routes>
+      <Footer />
     </>
   );
 };
