@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 interface hotelProp {
   hotels: any;
+  currency: any
 }
 
 const Home = (props: hotelProp) => {
@@ -23,7 +24,7 @@ const Home = (props: hotelProp) => {
                 <h1 className="font-semibold">{data.address}</h1>
                 <p className="text-gray-700 text-sm">{data.name}</p>
                 <h1 className="text-gray-500 text-sm">{data.type}</h1>
-                <h1 className="font-semibold">${data.price.rate}</h1>
+                <h1 className="font-semibold"><span className=" font-normal">{props.currency}</span> {data.price.rate}</h1>
               </div>
             </div>
             </Link>

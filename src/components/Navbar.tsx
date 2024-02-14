@@ -8,7 +8,12 @@ import Login from "./Login";
 import earth from "../images/earth.png";
 import Globe from "./Globe";
 
-const Navbar = () => {
+interface currencyProp {
+  setCurrency?: any
+}
+
+const Navbar = (props:currencyProp) => {
+
   const [popUp, setPopUp] = useState(false);
   const [sign, setSign] = useState(false);
   const [log, setLog] = useState(false);
@@ -54,7 +59,7 @@ const Navbar = () => {
       </div>
       {sign && <Signup setSign={setSign} />}
       {log && <Login setLog={setLog}/>}
-      {globe && <Globe setGlobe={setGlobe}/>}
+      {globe && <Globe setGlobe={setGlobe} setCurrency={props.setCurrency}/>}
       
     </div>
   );

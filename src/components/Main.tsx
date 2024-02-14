@@ -5,9 +5,10 @@ import Home from "./Home";
 
 const Main = () => {
   const [hotels, setHotels]= useState([])
+  const [currency,setCurrency]= useState('')
   const getHotels = async () => {
     const url =
-      "https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2024-03-01&checkout=2024-03-12&adults=1&children=0&infants=0&pets=0&page=1&currency=USD";
+      `https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2024-03-01&checkout=2024-03-12&adults=1&children=0&infants=0&pets=0&page=1&currency=${currency ?? "US"}`;
     const options = {
       method: "GET",
       headers: {
@@ -27,14 +28,14 @@ const Main = () => {
 
   useEffect(() => {
     getHotels();
-  }, []);
+  }, [currency]);
 
   console.log(hotels)
   return (
     <div>
-      <Navbar />
+      <Navbar setCurrency={setCurrency}/>
       <Menubar />
-      <Home hotels={hotels}/>
+      <Home hotels={hotels} currency={currency}/>
     </div>
   );
 };

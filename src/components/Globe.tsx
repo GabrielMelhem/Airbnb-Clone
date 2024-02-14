@@ -2,6 +2,7 @@ import React from "react";
 
 interface globeProp {
     setGlobe: any
+    setCurrency:any
 }
 const Globe = (props:globeProp) => {
   return (
@@ -27,68 +28,68 @@ const Globe = (props:globeProp) => {
             </div>
             <hr />
             <div className="grid grid-cols-4 p-8 text-gray-500">
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("EUR - €")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Euro</h1>
                 <h1>EUR - €</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("USD - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>US-Dollar</h1>
                 <h1>USD - $</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("AUD - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Australian Dollar</h1>
                 <h1>AUD - $</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("BRL - R$")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Brazilian real</h1>
                 <h1>BRL - R$</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("SAR - SR")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Saudi Arabian riyal</h1>
                 <h1>SAR - SR</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("CHF")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Swiss franc</h1>
                 <h1>CHF</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("MXN - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Mexican peso</h1>
                 <h1>MXN - $</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("CAD - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Canadian dollar</h1>
                 <h1>CAD - $</h1>
               </div>
 
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("BGN - B")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Bulgarian lev</h1>
                 <h1>BGN - B</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("HKD - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Hong Kong dollar</h1>
                 <h1>HKD - $</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("NZD - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>New Zealand Dollar</h1>
                 <h1>NZD - $</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("SEK - Kr")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Swedish Krona</h1>
                 <h1>SEK - Kr</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("MAD")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Moroccan dirham</h1>
                 <h1>MAD</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("DKK - Kr")} className="mt-3 ml-3 cursor-pointer">
               <h1>Danish Krone</h1>
                 <h1>DKK - Kr</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("CLP - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Chilean peso</h1>
                 <h1>CLP - $</h1>
               </div>
-              <div className="mt-3 ml-3 cursor-pointer">
+              <div onClick={()=>props.setCurrency("SGD - $")} className="mt-3 ml-3 cursor-pointer">
                 <h1>Singapore dollar</h1>
                 <h1>SGD - $</h1>
               </div>
