@@ -11,10 +11,11 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth, googleProvider } from "../firebase/setup";
+import { auth, googleProvider, facebookProvider } from "../firebase/setup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { error } from "console";
+import { useNavigate } from "react-router-dom";
 
 interface signProps {
   setLog?: any;
@@ -27,10 +28,15 @@ const Login = (props: signProps) => {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const googleSignin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
       auth.currentUser?.email && toast.success("LoggedIn successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err) {
       console.error(err);
       const error: any = err;
@@ -54,6 +60,9 @@ const Login = (props: signProps) => {
     try {
       const data = await user.confirm(otp);
       data.user.phoneNumber && toast.success("LoggedIn successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err) {
       console.error(err);
       const error: any = err;
@@ -65,12 +74,30 @@ const Login = (props: signProps) => {
     try {
       const data = await signInWithEmailAndPassword(auth, email, Password);
       data.user.email && toast.success("LoggedIn successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err) {
       console.error(err);
       const error: any = err;
       toast.error(error);
     }
   };
+
+  const facebookSignin = async () => {
+    try {
+      await signInWithPopup(auth, facebookProvider);
+      toast.success("LoggedIn successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } catch (err) {
+      console.error(err);
+      const error: any = err;
+      toast.error(error);
+    }
+  };
+
   return (
     <>
       <ToastContainer autoClose={3000} />
@@ -175,7 +202,10 @@ const Login = (props: signProps) => {
               )}
               <h1 className="text-center mt-3">or</h1>
               {!phone && (
-                <div className="flex items-center border border-spacing-1 rounded-xl border-black w-11/12 p-3 mt-3 ml-5 cursor-pointer hover:bg-gray-200">
+                <div
+                  onClick={facebookSignin}
+                  className="flex items-center border border-spacing-1 rounded-xl border-black w-11/12 p-3 mt-3 ml-5 cursor-pointer hover:bg-gray-200"
+                >
                   <img src={facebook} className="w-6 h-6 ml-3" />
                   <h1 className="ml-24">Continue with Facebook</h1>
                 </div>
