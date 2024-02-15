@@ -9,10 +9,10 @@ import earth from "../images/earth.png";
 import Globe from "./Globe";
 
 interface currencyProp {
-  setCurrency?: any
-  setDate?: any
-  setPlace?: any
-  setGuest?: any
+  setCurrency?: any;
+  setDate?: any;
+  setPlace?: any;
+  setGuest?: any;
 }
 
 const Navbar = (props: currencyProp) => {

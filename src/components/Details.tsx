@@ -6,6 +6,8 @@ import { auth, database } from "../firebase/setup";
 import moment from "moment";
 import Avatar from "react-avatar";
 import profile from "../images/user.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Details = () => {
   const location = useLocation();
@@ -23,8 +25,11 @@ const Details = () => {
         date: moment(new Date()).format("DD-MM-YYYY"),
         proImg: auth.currentUser?.photoURL,
       });
-    } catch (error) {
-      console.error(error);
+      toast.success("Review added successfully");
+    } catch (err) {
+      console.error(err);
+      const error: any = err;
+      toast.error(error);
     }
   };
 
@@ -37,8 +42,10 @@ const Details = () => {
         ...doc.data(),
       }));
       setReviewData(filteredData);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      const error: any = err;
+      toast.error(error);
     }
   };
 
@@ -48,6 +55,7 @@ const Details = () => {
 
   return (
     <>
+      <ToastContainer autoClose={3000}/>
       <Navbar />
       <div className="ml-20 mt-4">
         <h1 className="text-3xl font-semibold">{location.state.data.name}</h1>
@@ -136,16 +144,16 @@ const Details = () => {
                         src={data.proImg}
                         className="rounded-full w-12 h-12"
                       />
-                    ) : !data?.email ? 
+                    ) : !data?.email ? (
                       <Avatar
                         name={data.email ?? "Avatar"}
                         size="40"
                         round={true}
                         textSizeRatio={1.75}
                       />
-                     : 
+                    ) : (
                       <Avatar src={profile} size="40" round={true} />
-                    }
+                    )}
 
                     <div className="ml-3">
                       <h1 className=" font-semibold text-lg">

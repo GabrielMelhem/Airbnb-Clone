@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Menubar from "./Menubar";
 import Home from "./Home";
-import moment from "moment"
+import moment from "moment";
 
 const Main = () => {
   const [hotels, setHotels] = useState([]);
@@ -14,11 +14,19 @@ const Main = () => {
 
   const today = new Date();
   let tommorrow = new Date();
-  tommorrow.setDate(today.getDate()+1)
+  tommorrow.setDate(today.getDate() + 1);
 
   const getHotels = async () => {
-     //const url = `https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2024-03-01&checkout=2024-04-05&adults=1&children=0&infants=0&pets=0&page=1&currency=${currency ?? "USD"}`;
-    const url = `https://airbnb13.p.rapidapi.com/search-location?location=${place ? place :"Paris"}&checkin=${date ? date : moment(tommorrow).format("YYYY-MM-DD")}&checkout=${date ? date : moment(tommorrow).format("YYYY-MM-DD")}&adults=${guest ? guest : "1"}&children=0&infants=0&pets=0&page=1&currency=${currency ? currency : "USD"}`;
+    //const url = `https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2024-03-01&checkout=2024-04-05&adults=1&children=0&infants=0&pets=0&page=1&currency=${currency ?? "USD"}`;
+    const url = `https://airbnb13.p.rapidapi.com/search-location?location=${
+      place ? place : "Paris"
+    }&checkin=${
+      date ? date : moment(tommorrow).format("YYYY-MM-DD")
+    }&checkout=${date ? date : moment(tommorrow).format("YYYY-MM-DD")}&adults=${
+      guest ? guest : "1"
+    }&children=0&infants=0&pets=0&page=1&currency=${
+      currency ? currency : "USD"
+    }`;
     const options = {
       method: "GET",
       headers: {
@@ -37,15 +45,18 @@ const Main = () => {
   };
   useEffect(() => {
     getHotels();
-  }, [currency,place,date,guest]);
-
-
+  }, [currency, place, date, guest]);
 
   console.log(hotels);
   return (
     <div>
-      <Navbar setCurrency={setCurrency} setGuest={setGuest} setPlace={setPlace} setDate={setDate} />
-      <Menubar setMenu={setMenu}/>
+      <Navbar
+        setCurrency={setCurrency}
+        setGuest={setGuest}
+        setPlace={setPlace}
+        setDate={setDate}
+      />
+      <Menubar setMenu={setMenu} />
       <Home menu={menu} hotels={hotels} currency={currency} />
     </div>
   );
