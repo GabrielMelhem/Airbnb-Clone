@@ -9,10 +9,10 @@ import earth from "../images/earth.png";
 import Globe from "./Globe";
 
 interface currencyProp {
-  setCurrency?: any;
-  setPlace?: any;
-  setDate?: any;
-  setGuest?: any;
+  setCurrency?: any
+  setDate?: any
+  setPlace?: any
+  setGuest?: any
 }
 
 const Navbar = (props: currencyProp) => {
@@ -20,6 +20,7 @@ const Navbar = (props: currencyProp) => {
   const [sign, setSign] = useState(false);
   const [log, setLog] = useState(false);
   const [globe, setGlobe] = useState<any>(false);
+
   return (
     <div className="flex items-center p-3 border border-b-gray-300">
       <img src={airbnb} className="w-24 h-16 ml-16" />
@@ -27,7 +28,7 @@ const Navbar = (props: currencyProp) => {
         <input
           onChange={(e) => props.setPlace(e.target.value)}
           type="text"
-          id="place"
+          id="first_name"
           className=" text-gray-900 text-sm rounded-3xl block w-24 p-2.5 outline-none"
           placeholder="Add Place"
           required
@@ -36,7 +37,7 @@ const Navbar = (props: currencyProp) => {
         <input
           onChange={(e) => props.setDate(e.target.value)}
           type="text"
-          id="date"
+          id="first_name"
           className=" text-gray-900 text-sm rounded-3xl block w-24 p-2.5 outline-none"
           placeholder="Add Date"
           required
@@ -45,7 +46,7 @@ const Navbar = (props: currencyProp) => {
         <input
           onChange={(e) => props.setGuest(e.target.value)}
           type="text"
-          id="guest"
+          id="first_name"
           className=" text-gray-900 text-sm rounded-3xl block w-24 p-2.5 outline-none"
           placeholder="Add Guests"
           required

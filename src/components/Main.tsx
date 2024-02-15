@@ -11,11 +11,8 @@ const Main = () => {
   const [guest, setGuest] = useState("");
 
   const getHotels = async () => {
-    const url = `https://airbnb13.p.rapidapi.com/search-location?location=${
-      place ?? "Berlin"
-    }&checkin=${date ?? new Date()}&checkout=${date ?? new Date()}&adults=${
-      guest ?? "1"
-    }&children=0&infants=0&pets=0&page=1&currency=${currency ?? "US"}`;
+     //const url = `https://airbnb13.p.rapidapi.com/search-location?location=Paris&checkin=2024-03-01&checkout=2024-04-05&adults=1&children=0&infants=0&pets=0&page=1&currency=${currency ?? "USD"}`;
+    const url = `https://airbnb13.p.rapidapi.com/search-location?location=${place ?? "Paris"}&checkin=${date ?? new Date()}&checkout=${date ?? new Date()}&adults=${guest ?? "1"}&children=0&infants=0&pets=0&page=1&currency=${currency ?? "USD"}`;
     const options = {
       method: "GET",
       headers: {
@@ -32,15 +29,16 @@ const Main = () => {
       console.error(error);
     }
   };
-
   useEffect(() => {
     getHotels();
   }, [currency,place,date,guest]);
 
+
+
   console.log(hotels);
   return (
     <div>
-      <Navbar setCurrency={setCurrency} setPlace={setPlace} setDate={setDate} setGuest={setGuest}/>
+      <Navbar setCurrency={setCurrency} setGuest={setGuest} setPlace={setPlace} setDate={setDate} />
       <Menubar />
       <Home hotels={hotels} currency={currency} />
     </div>

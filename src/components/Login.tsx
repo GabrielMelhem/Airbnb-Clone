@@ -9,6 +9,7 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
   signInWithPopup,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 import { auth, googleProvider } from "../firebase/setup";
 
@@ -16,10 +17,12 @@ interface signProps {
   setLog?: any;
 }
 const Login = (props: signProps) => {
-  const [email, setEmail] = useState(false);
+  const [emailPopup, setEmailPopup] = useState(false);
   const [phone, setPhone] = useState("");
   const [user, setUser] = useState<any>(null);
   const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
   const googleSignin = async () => {
     try {
@@ -47,6 +50,15 @@ const Login = (props: signProps) => {
     }
     
   };
+
+  const emailLogin = async ()=>{
+    try {
+      const data= await signInWithEmailAndPassword(auth,email,Password)
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <div
       className="relative z-10"
@@ -77,9 +89,10 @@ const Login = (props: signProps) => {
             <h1 className="mt-4 font-semibold text-2xl ml-5">
               {!phone && "Welcome to Airbnb Clone"}
             </h1>
-            {email ? (
+            {emailPopup ? (
               <input
-                type="text"
+                onChange={(e)=>setEmail(e.target.value)}
+                type="email"
                 className="border border-spacing-1 text-gray-900 text-lg rounded-lg border-black h-12 mt-4 block w-11/12 p-2.5 outline-none ml-5"
                 placeholder="Email"
                 required
@@ -97,9 +110,10 @@ const Login = (props: signProps) => {
                 containerStyle={{ marginTop: "15px", marginLeft: "20px" }}
               />
             )}
-            {email && (
+            {emailPopup && (
               <input
-                type="text"
+                onChange={(e)=>setPassword(e.target.value)}
+                type="password"
                 className="border border-spacing-1 text-gray-900 text-lg rounded-lg border-black h-12 mt-4 block w-11/12 p-2.5 outline-none ml-5"
                 placeholder="Password"
                 required
@@ -135,8 +149,8 @@ const Login = (props: signProps) => {
               and data rates apply. Privacy Policy
             </h1>
 
-            {!phone && <button className="bg-rose-600 text-white font-bold py-2 px-4 rounded mt-3 w-11/12 h-12 ml-5">
-              {email ? "Agree and Continue" : "Continue"}
+            {!phone && <button onClick={emailLogin} className="bg-rose-600 text-white font-bold py-2 px-4 rounded mt-3 w-11/12 h-12 ml-5">
+              {emailPopup ? "Agree and Continue" : "Continue"}
             </button>}
             <h1 className="text-center mt-3">or</h1>
             {!phone && <div className="flex items-center border border-spacing-1 rounded-xl border-black w-11/12 p-3 mt-3 ml-5 cursor-pointer hover:bg-gray-200">
@@ -150,9 +164,9 @@ const Login = (props: signProps) => {
               <img src={google} className="w-6 h-6 ml-3" />
               <h1 className="ml-24">Continue with Google</h1>
             </div>}
-            {!email ? (
+            {!emailPopup ? (
               <div
-                onClick={() => setEmail(true)}
+                onClick={() => setEmailPopup(true)}
                 className="flex items-center border border-spacing-1 rounded-xl border-black w-11/12 p-3 mt-4 ml-5 cursor-pointer hover:bg-gray-200"
               >
                 <img src={mail} className="w-6 h-6 ml-3" />
@@ -160,7 +174,7 @@ const Login = (props: signProps) => {
               </div>
             ) : (
               <div
-                onClick={() => setEmail(false)}
+                onClick={() => setEmailPopup(false)}
                 className="flex items-center border border-spacing-1 rounded-xl border-black w-11/12 p-3 mt-4 ml-5 cursor-pointer hover:bg-gray-200"
               >
                 <img src={phone} className="w-6 h-6 ml-3" />

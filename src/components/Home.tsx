@@ -18,7 +18,7 @@ const Home = (props: hotelProp) => {
   }
   return (
     <div className="grid grid-cols-4">
-      {props.hotels.map((data: any) => {
+      {props.hotels && props.hotels.map((data: any) => {
         return (
           <>
             <Link onClick={()=> addHotels(data)} to="/details" state={{ data: data }}>

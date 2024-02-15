@@ -136,16 +136,16 @@ const Details = () => {
                         src={data.proImg}
                         className="rounded-full w-12 h-12"
                       />
-                    ) : !data.email? (
+                    ) : !data?.email ? 
                       <Avatar
                         name={data.email ?? "Avatar"}
                         size="40"
                         round={true}
                         textSizeRatio={1.75}
                       />
-                    ) : (
+                     : 
                       <Avatar src={profile} size="40" round={true} />
-                    )}
+                    }
 
                     <div className="ml-3">
                       <h1 className=" font-semibold text-lg">
