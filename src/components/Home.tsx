@@ -7,6 +7,7 @@ import { database } from "../firebase/setup";
 interface hotelProp {
   hotels: any;
   currency: any;
+  menu: any;
 }
 
 const Home = (props: hotelProp) => {
@@ -18,7 +19,7 @@ const Home = (props: hotelProp) => {
   }
   return (
     <div className="grid grid-cols-4">
-      {props.hotels && props.hotels.map((data: any) => {
+      {props.hotels?.filter((data:any)=> data.name.includes(props.menu)).map((data: any) => {
         return (
           <>
             <Link onClick={()=> addHotels(data)} to="/details" state={{ data: data }}>
@@ -34,7 +35,7 @@ const Home = (props: hotelProp) => {
                   <h1 className="text-gray-500 text-sm">{data.type}</h1>
                   <h1 className="font-semibold">
                     <span className=" font-normal">
-                      {props.currency ?? "$"}
+                      {props.currency ? props.currency : "$"}
                     </span>{" "}
                     {data.price.rate}
                   </h1>

@@ -28,7 +28,7 @@ const Navbar = (props: currencyProp) => {
         <input
           onChange={(e) => props.setPlace(e.target.value)}
           type="text"
-          id="first_name"
+          id="text"
           className=" text-gray-900 text-sm rounded-3xl block w-24 p-2.5 outline-none"
           placeholder="Add Place"
           required
@@ -36,8 +36,8 @@ const Navbar = (props: currencyProp) => {
         |
         <input
           onChange={(e) => props.setDate(e.target.value)}
-          type="text"
-          id="first_name"
+          type="date"
+          id="date"
           className=" text-gray-900 text-sm rounded-3xl block w-24 p-2.5 outline-none"
           placeholder="Add Date"
           required
@@ -46,7 +46,7 @@ const Navbar = (props: currencyProp) => {
         <input
           onChange={(e) => props.setGuest(e.target.value)}
           type="text"
-          id="first_name"
+          id="guest"
           className=" text-gray-900 text-sm rounded-3xl block w-24 p-2.5 outline-none"
           placeholder="Add Guests"
           required
