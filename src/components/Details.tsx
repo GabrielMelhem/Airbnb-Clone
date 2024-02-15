@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { auth, database } from "../firebase/setup";
 import moment from "moment";
+import Avatar from "react-avatar";
+import profile from "../images/user.png";
 
 const Details = () => {
   const location = useLocation();
@@ -129,7 +131,22 @@ const Details = () => {
               <>
                 <div>
                   <div className="flex items-center mt-8">
-                    <img src={data.proImg} className="rounded-full w-12 h-12" />
+                    {data.proImg ? (
+                      <img
+                        src={data.proImg}
+                        className="rounded-full w-12 h-12"
+                      />
+                    ) : !data.email? (
+                      <Avatar
+                        name={data.email ?? "Avatar"}
+                        size="40"
+                        round={true}
+                        textSizeRatio={1.75}
+                      />
+                    ) : (
+                      <Avatar src={profile} size="40" round={true} />
+                    )}
+
                     <div className="ml-3">
                       <h1 className=" font-semibold text-lg">
                         {data.email.substring(0, data.email.indexOf("@"))}
