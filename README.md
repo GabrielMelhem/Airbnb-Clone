@@ -4,9 +4,9 @@ This project is an Airbnb Clone built with React JS, Typescript, Tailwind CSS, a
 
 ## Table of Contents
 
-Features
-Technologies Used
-Lessons Learned 
+Features.
+Technologies Used.
+Lessons Learned.
 
 ### Features
 User authentication: Users can sign up, log in, and log out securely.
