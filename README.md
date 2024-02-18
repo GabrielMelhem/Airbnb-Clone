@@ -8,12 +8,12 @@ Features.
 Technologies Used.
 Lessons Learned.
 
-### Features
+## Features
 User authentication: Users can sign up, log in, and log out securely.
 Property listings: Users can view available properties with details such as location, price, and amenities.
 Property search: Users can search for properties based on various criteria such as location, dates, and price range.
 
-### Technologies Used
+## Technologies Used
 1- React JS Fundamentals: Using the basics of React JS  to build modular and interactive components for a seamless user experience.
 
 2- Typescript Integration: Enhance the development workflow with Typescript, ensuring a more robust and maintainable codebase.
