@@ -1,6 +1,6 @@
 # Airbnb Clone 
 
-This project is an Airbnb Clone built with React JS, Typescript, Tailwind CSS, and Firebase. It aims to replicate the core functionality and user interface of the popular accommodation booking platform, Airbnb. This README.md file provides an overview of the project, its features, and instructions on how to set it up and run it locally.
+This project is an Airbnb Clone built with React JS, Typescript, Tailwind CSS, and Firebase. It aims to replicate the core functionality and user interface of the popular accommodation booking platform, Airbnb. This README.md file provides an overview of the project, its features.
 
 ## Table of Contents
 
